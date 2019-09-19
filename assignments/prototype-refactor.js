@@ -10,15 +10,26 @@ Prototype Refactor
   * dimensions (These represent the character's size in the video game)
   * destroy() // prototype method that returns: `${this.name} was removed from the game.`
 */
-function GameObject(attOne) {
-    this.createdAt = attOne.createdAt;
-    this.name = attOne.name;
-    this.dimensions = attOne.dimensions;
+// function GameObject(attOne) {
+//     this.createdAt = attOne.createdAt;
+//     this.name = attOne.name;
+//     this.dimensions = attOne.dimensions;
+// }
+class GameObject {     ////// New Class
+    constructor(attOne) {
+        this.createdAt = attOne.createdAt;
+        this.name = attOne.name;
+        this.dimensions = attOne.dimensions;
+    }
+    destroy() {
+        return `${this.name} was removed from the game.`;
+    }
 }
+
 /// GameObject Prototype
-GameObject.prototype.destroy = function () {
-    return `${this.name} was removed from the game.`;
-}
+// GameObject.prototype.destroy = function () {
+//     return `${this.name} was removed from the game.`;
+// }
 
 /*
   === CharacterStats ===
@@ -26,18 +37,24 @@ GameObject.prototype.destroy = function () {
   * takeDamage() // prototype method -> returns the string '<object name> took damage.'
   * should inherit destroy() from GameObject's prototype
 */
-function CharacterStats(attTwo) {
-    this.healthPoints = attTwo.healthPoints;
-    GameObject.call(this, attTwo);
+class CharacterStats extends GameObject {
+    constructor(attTwo) {
+        super(attTwo);
+        this.healthPoints = attTwo.healthPoints;
+    }
+    takeDamage() {
+        return `${this.name} took damage.`;
+    }
+
 
 
 }
-CharacterStats.prototype = Object.create(GameObject.prototype);
+// CharacterStats.prototype = Object.create(GameObject.prototype);
 
 /// CharacterStats Prototypes
-CharacterStats.prototype.takeDamage = function () {
-    return `${this.name} took damage.`;
-}
+// CharacterStats.prototype.takeDamage = function () {
+//     return `${this.name} took damage.`;
+// }
 
 
 /*
@@ -49,23 +66,30 @@ CharacterStats.prototype.takeDamage = function () {
   * should inherit destroy() from GameObject through CharacterStats
   * should inherit takeDamage() from CharacterStats
 */
-function Humanoid(attThree) {
-    this.team = attThree.team;
-    this.weapons = attThree.weapons;
-    this.language = attThree.language;
-    CharacterStats.call(this, attThree);
+class Humanoid extends CharacterStats {
+    constructor(attThree) {
+        super(attThree);
+        this.team = attThree.team;
+        this.weapons = attThree.weapons;
+        this.language = attThree.language;
+    }
+    greet() {
+        return (`${this.name} offers a greeting in ${this.language}.`);
+    }
+
+    // CharacterStats.call(this, attThree);
 
 }
 //// Humanoid Prototypes
 // Humanoid.prototype.greet = function () {
 //   return `${this.name} offers a greeting in ${this.language}.`;
 // }
-Humanoid.prototype = Object.create(CharacterStats.prototype);
+// Humanoid.prototype = Object.create(CharacterStats.prototype);
 
 
-Humanoid.prototype.greet = function () {
-    return (`${this.name} offers a greeting in ${this.language}.`);
-}
+// Humanoid.prototype.greet = function () {
+//     return (`${this.name} offers a greeting in ${this.language}.`);
+// }
 /// Inheritence
 
 
@@ -140,6 +164,6 @@ console.log(archer.greet()); // Lilith offers a greeting in Elvish.
 console.log(mage.takeDamage()); // Bruce took damage.
 console.log(swordsman.destroy()); // Sir Mustachio was removed 
 
-2. Your goal is to refactor all of this code to use ES6 Classes.The console.log() statements should still return what is expected of them.
+// 2. Your goal is to refactor all of this code to use ES6 Classes.The console.log() statements should still return what is expected of them.
 
-* /
+// * /
