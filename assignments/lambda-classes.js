@@ -59,7 +59,7 @@ const laura = new Instructor({
 })/// this closes Instructor Object
 
 class Student extends Person {/// Inherits Person-(Parent) attributes
-    
+
     constructor(attThree) { /// Establishes a subclass of Person - (Parent)
         super(attThree);
         this.previousBackground = attThree.previousBackground,
@@ -84,29 +84,34 @@ const harry = new Student({
     className: 0101,
     favSubjects: "Computer science and biology",
     subject: "JavaScript-I"
-})
+}) // this closes student object
+
 const alexis = new Student({
     name: "Alexis",
     previousBackground: "Artist",
     className: 0101,
     favSubjects: "Art history and design",
     subject: "JavaScript-I"
-})
+}) // this closes student object
 
 class ProjectManager extends Instructor {
-    constructor(attFour) {
-        super(attFour);
+    constructor(attFour) { ///Inherits Instructor attributes
+
+        super(attFour);/// Establishes subclass of Instructor
         this.gradClassName = attFour.gradClassName,
             this.favInstructor = attFour.favInstructor,
             this.channel = attFour.channel
-    }
+    }/// this closes Project Manager constructor.
+
     standUp() {
         return `${this.name} announces to ${this.channel}, @ ${this.channel} standy times!`
-    }
+    }/// this closes Project Manager method.
+
     debugsCode() {
         return `${this.name} debugs ${mary.name}'s code on ${mary.subject}.`
-    }
-}
+    }/// this closes Project Manager method.
+
+}/// this closes ProjectManager class
 
 const sally = new ProjectManager({
     name: "Sally",
@@ -114,14 +119,15 @@ const sally = new ProjectManager({
     favInstructor: "Tom",
     channel: "IOS3",
     subject: "JavaScript-I"
-})
+})/// this closes Project Manager object
+
 const may = new ProjectManager({
     name: "May",
     gradClassName: "B02",
     favInstructor: "Mark",
     channel: "WEB22",
     subject: "JavaScript-I"
-})
+})   // this closes Project Manager Object.
 
 
 
